@@ -1,4 +1,5 @@
 import 'package:avril/screens/otp_screen.dart';
+import 'package:avril/screens/terms_conditions.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -623,7 +624,13 @@ class _LoginDetailsState extends State<LoginDetails> {
                                       ),
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () {
-                                          print('تم الضغط');
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) {
+                                                return TermsAndConditions();
+                                              },
+                                            ),
+                                          );
                                         },
                                     ),
                                   ],
