@@ -1,4 +1,4 @@
-import 'package:avril/screens/complete_registration/terms_conditions.dart';
+import 'package:avril/screens/complete_registration/terms%20and%20conditions/terms_conditions.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 

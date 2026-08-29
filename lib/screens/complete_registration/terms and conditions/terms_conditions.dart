@@ -1,4 +1,5 @@
 import 'package:avril/widgets/back_arrow.dart';
+import 'package:avril/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class TermsAndConditions extends StatelessWidget {
@@ -11,29 +12,24 @@ class TermsAndConditions extends StatelessWidget {
         children: [
           Expanded(
             flex: 1,
-            child: Container(
-              color: Colors.black,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Image.asset('assets/Group 1171277592.png'),
-
-                      BackArrow(),
-                    ],
-                  ),
-                  const Text(
-                    'الشروط والأحكام',
+            child: Stack(
+              children: [
+                CustomAppBar(),
+                Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: BackArrow(),
+                ),
+                Center(
+                  child: Text(
+                    'الشروط والاحكام',
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'ExpoArabic',
                       fontSize: 18,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           Expanded(

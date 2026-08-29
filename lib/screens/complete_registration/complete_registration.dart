@@ -1,4 +1,5 @@
-import 'package:avril/screens/complete_registration/accept_termsAndConditions.dart';
+import 'package:avril/screens/complete_registration/accept_terms_conditions.dart';
+import 'package:avril/screens/home_screen/home_screen.dart';
 import 'package:avril/widgets/custom_card_container.dart';
 import 'package:avril/widgets/custom_card_header.dart';
 import 'package:avril/widgets/logo_container.dart';
@@ -40,7 +41,9 @@ class _LoginDetailsState extends State<LoginDetails> {
       return;
     }
 
-    print('تم استكمال البيانات بنجاح!');
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => const HomeScreen()),
+    );
   }
 
   @override
@@ -119,19 +122,14 @@ class _LoginDetailsState extends State<LoginDetails> {
                 height: 60,
                 width: double.infinity,
                 child: ElevatedButton(
-                  // عند عدم التعليم يكون null فيصبح غير قابل للضغط
                   onPressed: isChecked ? validateAndContinue : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: isChecked ? Colors.black : Colors.white,
-                    disabledBackgroundColor:
-                        Colors.white, // خلفية بيضاء عند التعطيل
+                    disabledBackgroundColor: Colors.white,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(32),
-                      side: BorderSide(
-                        color: Colors.black, // إطار أسود دائم سواء مفعل أو معطل
-                        width: 1,
-                      ),
+                      side: BorderSide(color: Colors.black, width: 1),
                     ),
                   ),
                   child: Text(
@@ -139,9 +137,7 @@ class _LoginDetailsState extends State<LoginDetails> {
                     style: TextStyle(
                       fontFamily: 'ExpoArabic',
                       fontSize: 22,
-                      color: isChecked
-                          ? Colors.white
-                          : Colors.grey, // خط رصاصي عند عدم التفعيل
+                      color: isChecked ? Colors.white : Colors.grey,
                     ),
                   ),
                 ),
