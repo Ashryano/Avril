@@ -1,3 +1,4 @@
+import 'package:avril/widgets/back_arrow.dart';
 import 'package:flutter/material.dart';
 
 class TermsAndConditions extends StatelessWidget {
@@ -20,23 +21,7 @@ class TermsAndConditions extends StatelessWidget {
                     children: [
                       Image.asset('assets/Group 1171277592.png'),
 
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: Container(
-                            width: 32,
-                            height: 32,
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(Icons.arrow_forward),
-                          ),
-                        ),
-                      ),
+                      BackArrow(),
                     ],
                   ),
                   const Text(

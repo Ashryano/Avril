@@ -1,4 +1,4 @@
-import 'package:avril/screens/login_screen.dart';
+import 'package:avril/screens/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
