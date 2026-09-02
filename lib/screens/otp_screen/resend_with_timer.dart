@@ -1,36 +1,44 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 class ResendWithTimer extends StatefulWidget {
   final int initialSeconds;
-  const ResendWithTimer({super.key, required this.initialSeconds});
+  final VoidCallback? onResend; // إضافة callback لإرسال الطلب لـ API عند الضغط
+
+  const ResendWithTimer({
+    super.key,
+    required this.initialSeconds,
+    this.onResend,
+  });
 
   @override
   State<ResendWithTimer> createState() => _ResendWithTimerState();
 }
 
 class _ResendWithTimerState extends State<ResendWithTimer> {
-  late int _remaningSeconds;
+  late int _remainingSeconds; // تصحيح اسم المتغير من remaning إلى remaining
   bool _canResend = false;
   Timer? _timer;
 
   void startTimer() {
     setState(() {
-      _remaningSeconds = widget.initialSeconds;
+      _remainingSeconds = widget.initialSeconds;
       _canResend = false;
     });
+
     _timer?.cancel();
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if (_remaningSeconds > 0) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) return; // حماية لعدم استدعاء setState بعد تدمير الصفحة
+
+      if (_remainingSeconds > 0) {
         setState(() {
-          _remaningSeconds--;
+          _remainingSeconds--;
         });
       } else {
         setState(() {
           _canResend = true;
-          _timer?.cancel();
         });
+        _timer?.cancel();
       }
     });
   }
@@ -42,22 +50,30 @@ class _ResendWithTimerState extends State<ResendWithTimer> {
   }
 
   @override
+  void dispose() {
+    _timer?.cancel(); // إلغاء المؤقت فور الخروج من الشاشة لمنع تسريب الذاكرة
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          '00:${_remaningSeconds.toString().padLeft(2, '0')}',
-          style: TextStyle(color: Colors.grey),
+          '00:${_remainingSeconds.toString().padLeft(2, '0')}',
+          style: const TextStyle(color: Colors.grey),
         ),
-
+        const SizedBox(height: 8),
         GestureDetector(
           onTap: _canResend
               ? () {
                   startTimer();
+                  widget.onResend?.call(); // تنفيذ أمر إعادة الإرسال الخارجي
                 }
               : null,
           child: Text(
-            'اعادة الارسال؟',
+            'إعادة الإرسال؟',
             style: TextStyle(
               color: _canResend ? Colors.black : Colors.grey,
               fontFamily: 'ExpoArabic',

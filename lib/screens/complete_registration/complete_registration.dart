@@ -1,5 +1,5 @@
 import 'package:avril/screens/complete_registration/accept_terms_conditions.dart';
-import 'package:avril/screens/home_screen/home_screen.dart';
+import 'package:avril/screens/home_screen/home_screen/home_screen.dart';
 import 'package:avril/widgets/custom_card_container.dart';
 import 'package:avril/widgets/custom_card_header.dart';
 import 'package:avril/widgets/logo_container.dart';

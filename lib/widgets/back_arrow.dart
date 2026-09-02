@@ -5,21 +5,20 @@ class BackArrow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: IconButton(
-        onPressed: () {
+    return GestureDetector(
+      onTap: () {
+        if (Navigator.canPop(context)) {
           Navigator.pop(context);
-        },
-        icon: Container(
-          width: 32,
-          height: 32,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-          ),
-          child: const Icon(Icons.arrow_forward),
+        }
+      },
+      child: Container(
+        width: 32,
+        height: 32,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          shape: BoxShape.circle,
         ),
+        child: const Icon(Icons.arrow_back, size: 18, color: Colors.black),
       ),
     );
   }

@@ -27,8 +27,11 @@ class _OtpScreenState extends State<OtpScreen> {
                 children: [
                   LogoContainer(),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
-                    child: BackArrow(),
+                    padding: const EdgeInsets.only(top: 20.0, right: 10),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: BackArrow(),
+                    ),
                   ),
                 ],
               ),

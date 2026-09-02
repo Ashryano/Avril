@@ -1,4 +1,6 @@
-import 'package:avril/screens/home_screen/banner_slider.dart';
+import 'package:avril/screens/home_screen/banner/banner_slider.dart';
+import 'package:avril/screens/home_screen/bottom_navigator_bar/bottom_navigator_bar.dart';
+import 'package:avril/screens/home_screen/sections/sections.dart';
 import 'package:avril/widgets/custom_app_bar.dart';
 import 'package:avril/widgets/white_circle_for_icons.dart';
 import 'package:flutter/material.dart';
@@ -50,10 +52,12 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
 
-          // استدعاء البانر كودجت منفصلة
           BannerSlider(bannerImages: bannerImages),
+
+          Expanded(child: Sections()),
         ],
       ),
+      bottomNavigationBar: BottomNavigatoinBar(),
     );
   }
 }
