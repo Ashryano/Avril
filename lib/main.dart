@@ -1,9 +1,16 @@
-import 'package:avril/screens/home_screen/home_screen/home_screen.dart';
+import 'package:avril/screens/men_salon_screen/favorit_provider/favorite_provider.dart';
+import 'package:avril/screens/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => FavoriteProvider(),
+      child: const MyApp(), // تطبيقك الرئيسي
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -14,8 +21,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Avril',
-
-      // ضبط اللغة والتوجيه التلقائي RTL
       locale: const Locale('ar', 'EG'),
       supportedLocales: const [Locale('ar', 'EG'), Locale('en', 'US')],
       localizationsDelegates: const [
@@ -24,7 +29,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
 
-      home: const HomeScreen(),
+      home: const SplashScreen(),
     );
   }
 }

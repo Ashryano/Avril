@@ -1,5 +1,4 @@
 import 'package:avril/screens/home_screen/banner/banner_slider.dart';
-import 'package:avril/screens/home_screen/bottom_navigator_bar/bottom_navigator_bar.dart';
 import 'package:avril/screens/home_screen/sections/sections.dart';
 import 'package:avril/widgets/custom_app_bar.dart';
 import 'package:avril/widgets/white_circle_for_icons.dart';
@@ -20,8 +19,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return Container(
+      color: Colors.white,
+      child: Column(
         children: [
           Stack(
             alignment: Alignment.bottomCenter,
@@ -32,12 +32,6 @@ class HomeScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Row(
-                      children: [
-                        WhiteCircleForIcons(circleIcon: Icons.notifications),
-                        WhiteCircleForIcons(circleIcon: Icons.message),
-                      ],
-                    ),
                     SizedBox(
                       child: SvgPicture.asset(
                         'assets/Group.svg',
@@ -46,18 +40,38 @@ class HomeScreen extends StatelessWidget {
                         fit: BoxFit.contain,
                       ),
                     ),
+                    Row(
+                      children: [
+                        WhiteCircleForIcons(
+                          circleIcon: Icons.notifications,
+                          onPressed: () {},
+                        ),
+                        WhiteCircleForIcons(
+                          circleIcon: Icons.message,
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
             ],
           ),
-
+          const SizedBox(height: 10),
           BannerSlider(bannerImages: bannerImages),
+          const SizedBox(height: 10),
 
-          Expanded(child: Sections()),
+          const Expanded(
+            child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Sections(),
+              ),
+            ),
+          ),
         ],
       ),
-      bottomNavigationBar: BottomNavigatoinBar(),
     );
   }
 }

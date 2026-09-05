@@ -7,9 +7,7 @@ class BackArrow extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (Navigator.canPop(context)) {
-          Navigator.pop(context);
-        }
+        Navigator.pop(context);
       },
       child: Container(
         width: 32,

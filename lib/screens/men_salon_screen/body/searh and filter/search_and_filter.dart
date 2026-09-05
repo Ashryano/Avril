@@ -1,7 +1,17 @@
+import 'package:avril/screens/men_salon_screen/body/searh%20and%20filter/filter_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 class SearchAndFilterBar extends StatelessWidget {
-  const SearchAndFilterBar({super.key});
+  final Function(Map<String, bool>)? onFilterApplied;
+  final Function(String)? onSearchChanged;
+  final TextEditingController? searchController;
+
+  const SearchAndFilterBar({
+    super.key,
+    this.onFilterApplied,
+    this.onSearchChanged,
+    this.searchController,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +19,6 @@ class SearchAndFilterBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
-          // 1. زر الفلترة/القائمة على اليسار
           Container(
             width: 48,
             height: 48,
@@ -31,15 +40,29 @@ class SearchAndFilterBar extends StatelessWidget {
                 color: Colors.grey.shade600,
                 size: 22,
               ),
-              onPressed: () {
-                // ضَع هنا الأكشن الخاص بفتح الفلتر أو القائمة
+              onPressed: () async {
+                final result = await showModalBottomSheet<Map<String, bool>>(
+                  context: context,
+                  isScrollControlled: true,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(20),
+                    ),
+                  ),
+                  builder: (context) => const FilterBottomSheet(),
+                );
+
+                if (result != null && onFilterApplied != null) {
+                  onFilterApplied!(
+                    result,
+                  ); // إرسال خيارات الفلتر للشاشة الرئيسية
+                }
               },
             ),
           ),
 
           const SizedBox(width: 10),
 
-          // 2. مربع البحث
           Expanded(
             child: Container(
               height: 48,
@@ -56,6 +79,8 @@ class SearchAndFilterBar extends StatelessWidget {
                 ],
               ),
               child: TextField(
+                controller: searchController,
+                onChanged: onSearchChanged,
                 textDirection: TextDirection.rtl,
                 textAlign: TextAlign.right,
                 decoration: InputDecoration(

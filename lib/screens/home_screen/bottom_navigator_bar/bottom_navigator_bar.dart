@@ -1,19 +1,29 @@
 import 'package:flutter/material.dart';
 
-class BottomNavigatoinBar extends StatefulWidget {
-  const BottomNavigatoinBar({super.key});
+class CustomBottomNavBar extends StatelessWidget {
+  final int currentIndex;
+  final ValueChanged<int> onTap;
 
-  @override
-  State<BottomNavigatoinBar> createState() => _BottomNavigatoinBarState();
-}
-
-class _BottomNavigatoinBarState extends State<BottomNavigatoinBar> {
-  int currentPage = 0;
+  const CustomBottomNavBar({
+    super.key,
+    required this.currentIndex,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: 90,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(24),
+          topRight: Radius.circular(24),
+        ),
+        boxShadow: [
+          BoxShadow(color: Colors.black12, blurRadius: 10, spreadRadius: 1),
+        ],
+      ),
       child: ClipRRect(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(24),
@@ -21,12 +31,13 @@ class _BottomNavigatoinBarState extends State<BottomNavigatoinBar> {
         ),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          currentIndex: currentPage,
+          currentIndex: currentIndex,
           backgroundColor: Colors.white,
           iconSize: 26.0,
           selectedFontSize: 12.0,
           unselectedFontSize: 10.0,
-
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.grey,
           selectedLabelStyle: const TextStyle(
             height: 1.5,
             fontFamily: 'ExpoArabic',
@@ -35,14 +46,7 @@ class _BottomNavigatoinBarState extends State<BottomNavigatoinBar> {
             height: 1.5,
             fontFamily: 'ExpoArabic',
           ),
-
-          onTap: (index) {
-            setState(() {
-              currentPage = index;
-            });
-          },
-          selectedItemColor: Colors.black,
-          unselectedItemColor: Colors.grey,
+          onTap: onTap,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.grid_view),

@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
+
 class serviceProviders {
   const serviceProviders({
+    required this.id,
     required this.image,
     required this.name,
     required this.rate,
@@ -7,8 +10,9 @@ class serviceProviders {
     required this.like,
     this.isHomeAvailable = false,
     this.isCenterAvailable = false,
+    required this.onTap,
   });
-
+  final String id;
   final String image;
   final String name;
   final String rate;
@@ -16,4 +20,5 @@ class serviceProviders {
   final String like;
   final bool isHomeAvailable;
   final bool isCenterAvailable;
+  final VoidCallback onTap;
 }

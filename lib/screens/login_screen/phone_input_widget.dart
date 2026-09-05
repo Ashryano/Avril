@@ -42,14 +42,6 @@ class PhoneInputWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('+966'),
-                  const SizedBox(width: 5),
-
-                  Container(height: 20, width: 1.5, color: Colors.grey[300]),
-
-                  const SizedBox(width: 5),
-                  Image.asset('assets/Rectangle 144681.jpg'),
-                  const SizedBox(width: 12),
                   Expanded(
                     child: TextField(
                       inputFormatters: [LengthLimitingTextInputFormatter(9)],
@@ -66,6 +58,15 @@ class PhoneInputWidget extends StatelessWidget {
                       ),
                     ),
                   ),
+                  const SizedBox(width: 12),
+                  Image.asset('assets/Rectangle 144681.jpg'),
+                  const SizedBox(width: 5),
+
+                  Container(height: 20, width: 1.5, color: Colors.grey[300]),
+
+                  const SizedBox(width: 5),
+
+                  Text('966+'),
                 ],
               ),
             ),
